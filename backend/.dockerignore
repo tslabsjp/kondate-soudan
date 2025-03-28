@@ -1,0 +1,29 @@
+# Python仮想環境を除外
+venv/
+.venv/
+env/
+
+# キャッシュ・一時ファイル
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.bak
+
+# IDE・エディタ
+.vscode/
+.idea/
+
+# OSファイル
+.DS_Store
+Thumbs.db
+
+# Git管理ファイル
+.git
+.gitignore
+
+# 環境変数ファイル（セキュリティ上除外）
+.env
+.env.*

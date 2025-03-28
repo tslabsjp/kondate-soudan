@@ -1,0 +1,29 @@
+# node_modules（ビルド時に入れるなら除外してOK）
+node_modules/
+
+# ビルド生成物（ローカル用）
+dist/
+build/
+*.log
+
+# 一時・キャッシュファイル
+.cache/
+.tmp/
+*.bak
+*.tmp
+
+# IDE・エディタ
+.vscode/
+.idea/
+
+# OSファイル
+.DS_Store
+Thumbs.db
+
+# Git関連
+.git
+.gitignore
+
+# 環境変数
+.env
+.env.*
