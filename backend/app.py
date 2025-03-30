@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_restx import Api, Resource
 import os
 from dotenv import load_dotenv
+from api.routes_mock import mock_api  # ← 追加
 
 # .env ファイルの読み込み
 load_dotenv()
@@ -41,6 +42,12 @@ class Recipe(Resource):
             "menu": "さっぱり鶏肉の南蛮漬け",
             "ingredients": ["鶏肉", "酢", "玉ねぎ", "ピーマン"]
         }
+
+
+# Flask アプリの初期化後に追記
+app.register_blueprint(mock_api)     # ← Blueprint 登録（必ず api.init_app(app) より後でもOK）
+
+
 
 # アプリの起動
 if __name__ == "__main__":

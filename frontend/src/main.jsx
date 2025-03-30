@@ -11,16 +11,16 @@ import NotFoundPage from "./pages/NotFoundPage.jsx"; // NotFound エラー画面
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/input" element={<InputPage />} />
-        <Route path="/result" element={<ResultPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="*" element={<NotFoundPage />} /> {/* ← 404 catch-all */}
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode> #TODO 開発時
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/input" element={<InputPage />} />
+      <Route path="/result" element={<ResultPage />} />
+      <Route path="/favorites" element={<FavoritesPage />} />
+      <Route path="/history" element={<HistoryPage />} />
+      <Route path="*" element={<NotFoundPage />} /> {/* ← 404 catch-all */}
+    </Routes>
+  </BrowserRouter>
+  // </React.StrictMode>
 );

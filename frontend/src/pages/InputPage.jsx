@@ -10,16 +10,35 @@ export default function InputPage() {
 
   const navigate = useNavigate(); // 🆕 遷移用の関数を取得
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🆕 入力内容を /result に渡して遷移
-    navigate("/result", {
-      state: {
-        ingredients,
-        mood,
-      },
-    });
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/suggest`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ingredients, mood }),
+        }
+      );
+
+      const data = await response.json();
+
+      // 結果を ResultPage に渡して遷移
+      navigate("/result", {
+        state: {
+          ingredients,
+          mood,
+          result: data, // ← 提案データを含めて送る
+        },
+      });
+    } catch (error) {
+      console.error("献立提案エラー:", error);
+      alert(
+        "提案の取得に失敗しました。サーバーが起動しているか確認してください。"
+      );
+    }
   };
 
   const handleReset = () => {

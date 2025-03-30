@@ -25,7 +25,7 @@ export default function TopPage() {
             <Link to="/favorites">🔸 お気に入りを見る</Link>
           </Button>
           <Button variant="outline">
-            <Link to="/favorites">🔸 提案履歴を見る</Link>
+            <Link to="/history">🔸 提案履歴を見る</Link>
           </Button>
         </div>
 
