@@ -59,16 +59,22 @@ export default function InputPage() {
         <CardContent className="p-6 space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block font-semibold mb-1">🥬 食材</label>
+              <label htmlFor="ingredient" className="block font-semibold mb-1">
+                🥬 食材
+              </label>
               <Input
+                id="ingredient"
                 placeholder="例：鶏肉、キャベツ"
                 value={ingredients}
                 onChange={(e) => setIngredients(e.target.value)}
               />
             </div>
             <div>
-              <label className="block font-semibold mb-1">🌤 気分</label>
+              <label htmlFor="mood" className="block font-semibold mb-1">
+                🌤 気分
+              </label>
               <Input
+                id="mood"
                 placeholder="例：さっぱり、ガッツリ"
                 value={mood}
                 onChange={(e) => setMood(e.target.value)}

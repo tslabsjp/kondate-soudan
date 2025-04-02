@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import InputPage from "./InputPage";
+import ResultPage from "./ResultPage"; // ✅ 本物のResultPageを使う
 
 describe("InputPage", () => {
   const renderWithRouter = () => {
@@ -9,7 +10,7 @@ describe("InputPage", () => {
       <MemoryRouter initialEntries={["/input"]}>
         <Routes>
           <Route path="/input" element={<InputPage />} />
-          <Route path="/result" element={<div>Result Page</div>} />
+          <Route path="/result" element={<ResultPage />} />
         </Routes>
       </MemoryRouter>
     );
@@ -22,8 +23,10 @@ describe("InputPage", () => {
   // @auto ○
   it("初期状態で入力欄が表示される", () => {
     renderWithRouter();
-    expect(screen.getByPlaceholderText(/食材/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/気分/i)).toBeInTheDocument();
+    // expect(screen.getByPlaceholderText(/食材/i)).toBeInTheDocument();
+    // expect(screen.getByPlaceholderText(/気分/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/食材/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/気分/i)).toBeInTheDocument();
   });
 
   // @id T102
@@ -34,12 +37,14 @@ describe("InputPage", () => {
   it("食材と気分を入力して提案ボタンで遷移する", async () => {
     renderWithRouter();
 
-    await userEvent.type(screen.getByPlaceholderText(/食材/i), "鶏肉");
-    await userEvent.type(screen.getByPlaceholderText(/気分/i), "さっぱり");
+    // await userEvent.type(screen.getByPlaceholderText(/食材/i), "鶏肉");
+    // await userEvent.type(screen.getByPlaceholderText(/気分/i), "さっぱり");
+    await userEvent.type(screen.getByLabelText(/食材/i), "鶏肉");
+    await userEvent.type(screen.getByLabelText(/気分/i), "さっぱり");
     await userEvent.click(
       screen.getByRole("button", { name: /献立を提案する/i })
     );
 
-    expect(screen.getByText("Result Page")).toBeInTheDocument();
+    expect(await screen.findByText(/ご提案/)).toBeInTheDocument();
   });
 });
